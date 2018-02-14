@@ -1,0 +1,6 @@
+# use glob syntax.
+syntax: glob
+
+*.pyc
+django_es_indexer.egg-info
+dist
