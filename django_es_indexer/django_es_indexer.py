@@ -138,7 +138,7 @@ def main(type_choices, es_client, options):
         raise Exception("doc type is required")
 
     func_args = func_map[command].get("args", {})
-    func_args_vals = [arg_parse_func(options[arg_name]) for arg_name, arg_parse_func in six.iteritmes(func_args)]
+    func_args_vals = [arg_parse_func(options[arg_name]) for arg_name, arg_parse_func in six.iteritems(func_args)]
 
     type_func = partial(globals()[command], type_choices, es_client, start_time)
     cmd_report = type_func(*func_args_vals)
