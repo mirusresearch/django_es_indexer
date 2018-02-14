@@ -306,7 +306,7 @@ def populate(type_choices, es_client, begin_time, doc_type, num_processes, limit
             # yield empty generator
             return
             yield
-        for i in xrange(0, len(l), n):
+        for i in six.moves.range(0, len(l), n):
             yield l[i:i+n]
 
     row_ids = type_obj["query"].values_list("id", flat=True).order_by("id")
