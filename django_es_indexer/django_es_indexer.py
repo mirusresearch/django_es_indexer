@@ -194,6 +194,12 @@ def create(type_choices, es_client, begin_time, doc_type):
     if idx_client.exists_type(index=index_name, doc_type=doc_type):
         raise Exception("doc type already exists")
 
+    # someties custom analyzers and filters will need to be added in,
+    # that is done in settings when an index is being created, so it is added in here before mapping are added (if it's available)
+    if "settings" in type_obj:
+        idx_client.put_settings(index=index_name, doc_type=doc_type, body=type_obj["mapping"])
+
+    # this defines the mapping that will be added in for the doc type
     idx_client.put_mapping(index=index_name, doc_type=doc_type, body=type_obj["mapping"])
 
     return [{
